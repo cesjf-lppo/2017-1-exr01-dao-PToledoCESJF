@@ -5,10 +5,14 @@
  */
 package br.cesjf.lppo.servlets;
 
+import br.cesjf.lppo.dao.PedidoDAO;
 import br.cesjf.lppo.dao.Pedidos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,28 +32,16 @@ public class ListaPedidosServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Pedidos> pedidos;
         
-    }
-}
-
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        List<Contato> contatos;
-
         try {
-           ContatoDAO dao = new ContatoDAO();
-            contatos = dao.listAll();
+            PedidoDAO dao = new PedidoDAO();
+            pedidos = dao.listarTodos();
         } catch (Exception ex) {
-            Logger.getLogger(ListaContatosServlet.class.getName()).log(Level.SEVERE, null, ex);
-            contatos = new ArrayList<>();
+            Logger.getLogger(ListaPedidosServlet.class.getName()).log(Level.SEVERE, null, ex);
+            pedidos = new ArrayList<>();
             request.setAttribute("mensagem", ex.getLocalizedMessage());
         }
+        request.setAttribute("pedidos", pedidos);
+        request.getRequestDispatcher("/WEB-INF/lista-pedidos.jsp").forward(request, response);
         
-        request.setAttribute("contatos", contatos);
-        request.getRequestDispatcher("WEB-INF/lista-contatos.jsp").forward(request, response);
     }
-
- 
-
 }
