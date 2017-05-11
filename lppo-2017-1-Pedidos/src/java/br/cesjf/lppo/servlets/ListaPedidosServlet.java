@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.cesjf.lppo.servlets;
 
 import br.cesjf.lppo.dao.PedidoDAO;
 import br.cesjf.lppo.dao.Pedidos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,10 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author alunoces
- */
 @WebServlet(name = "ListaPedidosServlet", urlPatterns = {"/pedidos.html"})
 public class ListaPedidosServlet extends HttpServlet {
 

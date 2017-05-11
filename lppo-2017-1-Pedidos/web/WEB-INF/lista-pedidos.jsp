@@ -11,24 +11,27 @@
         <h1>Lista de Pedidos</h1>
         <div style="color: red;">${mensagem}</div>
         <table>
-            <tr>
-                <th>ID</th>
-                <th>Pedido</th>
-                <th>Dono</th>
-                <th>Valor</th>
-                <th>Nome</th>
-                <th>Atulizacao</th>
-            </tr>
-
-            <c:forEach var="pedido" items="${pedidos}">    
+            <thead>
                 <tr>
-                    <td><a href="detalhes.html?id=${pedido.id}">${pedido.id}</a></td>
-                    <td>${pedido.pedido}</td>
-                    <td>${pedido.dono}</td>
-                    <td>${pedido.valor}</td>
-                    <td>${pedido.nome}</td>
-                    <td>${pedido.atualizar}</td>
+                    <th>ID</th>
+                    <th>Pedido</th>
+                    <th>Dono</th>
+                    <th>Valor</th>
+                    <th>Nome</th>
+                    <th>Atulizacao</th>
                 </tr>
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:forEach var="pedido" items="${pedidos}">    
+                    <tr>
+                        <td><a href="detalhes.html?id=${pedido.id}">${pedido.id}</a></td>
+                        <td>${pedido.pedido}</td>
+                        <td>${pedido.dono}</td>
+                        <td>${pedido.valor}</td>
+                        <td>${pedido.nome}</td>
+                        <td>${pedido.atualizacao}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
     </body>
 </html>
