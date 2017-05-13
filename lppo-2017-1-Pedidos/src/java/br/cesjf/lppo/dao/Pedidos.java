@@ -1,5 +1,6 @@
 package br.cesjf.lppo.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Pedidos {
@@ -8,7 +9,8 @@ public class Pedidos {
     private String dono;
     private double valor;
     private String nome;
-    private Date atualizacao;
+    private Timestamp atualizacao;
+    
 
     public Pedidos() {
     }
@@ -53,11 +55,11 @@ public class Pedidos {
         this.nome = nome;
     }
 
-    public Date getAtualizacao() {
+    public Timestamp getAtualizacao() {
         return atualizacao;
     }
 
-    public void setAtualizacao(Date atualizacao) {
+    public void setAtualizacao(Timestamp atualizacao) {
         this.atualizacao = atualizacao;
     }
     
