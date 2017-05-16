@@ -1,4 +1,4 @@
-/*DROP TABLE pedido;
+DROP TABLE pedido;
 
 CREATE TABLE pedido
 (
@@ -7,9 +7,9 @@ CREATE TABLE pedido
         dono VARCHAR(50) NOT NULL,
         valor REAL NOT NULL,
 	nome VARCHAR(90) NOT NULL,
-        atualizacao TIMESTAMP
+        atualizacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-*/
+
 INSERT INTO pedido(pedido, dono, valor, nome) VALUES(10, 'Manuel', 3120.70, 'GUITARRA');
 INSERT INTO pedido(pedido, dono, valor, nome) VALUES(11, 'Jaquim', 30.20, 'PEDALEIRAS');
 INSERT INTO pedido(pedido, dono, valor, nome) VALUES(20, 'Gertrudes', 210.90, 'CONTRABAIXO');

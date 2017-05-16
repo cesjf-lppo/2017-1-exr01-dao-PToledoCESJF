@@ -4,24 +4,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class PedidoDAO {
 
+    private final SimpleDateFormat formataData = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final PreparedStatement opListar;
     private final PreparedStatement opNovo;
     private final PreparedStatement opBuscaPorId;
     private final PreparedStatement opAtualiza;
+    
+    
 
     public PedidoDAO() throws Exception {
         Connection conexao = ConnectionFactory.createConnection();
         opListar = conexao.prepareStatement("SELECT * FROM pedido");
         opNovo = conexao.prepareStatement("INSERT INTO pedido(pedido, dono, valor, nome) Values(?, ?, ?, ?)");
         opBuscaPorId = conexao.prepareStatement("SELECT * FROM pedido WHERE id = ?");
-        opAtualiza = conexao.prepareStatement("UPDATE pedido SET pedido = ?, dono = ?, valor = ?, nome = ? WHERE id = ?"); // FALTA O CAMPO ATUALIZAÇÃO
-        
+        opAtualiza = conexao.prepareStatement("UPDATE pedido SET pedido = ?, dono = ?, valor = ?, nome = ?, atualizacao = ? WHERE id = ?"); // FALTA O CAMPO ATUALIZAÇÃO
     }
 
     public List<Pedidos> listarTodos() throws Exception {
@@ -82,13 +86,14 @@ public class PedidoDAO {
 
     public void atualizarPedido(Pedidos pedido) throws Exception {
         try{
+            
             opAtualiza.clearParameters();
             opAtualiza.setLong(1, pedido.getPedido());
             opAtualiza.setString(2, pedido.getDono());
             opAtualiza.setDouble(3, pedido.getValor());
             opAtualiza.setString(4, pedido.getNome());
-            //opAtualiza.setTimestamp(5, pedido.getAtualizacao());
-            opAtualiza.setLong(5, pedido.getId());
+            opAtualiza.setTimestamp(5, new Timestamp(pedido.getAtualizacao().getTime()));// Pega a data e hora e insere como parametro
+            opAtualiza.setLong(6, pedido.getId());
             opAtualiza.executeUpdate();
             
         } catch(SQLException ex){

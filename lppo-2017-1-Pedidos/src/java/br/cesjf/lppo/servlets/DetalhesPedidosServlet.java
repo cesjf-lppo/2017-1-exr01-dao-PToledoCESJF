@@ -3,6 +3,8 @@ package br.cesjf.lppo.servlets;
 import br.cesjf.lppo.dao.PedidoDAO;
 import br.cesjf.lppo.dao.Pedidos;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,6 +38,9 @@ public class DetalhesPedidosServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        SimpleDateFormat formataData = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             PedidoDAO dao;
@@ -46,7 +51,7 @@ public class DetalhesPedidosServlet extends HttpServlet {
             pedido.setDono(request.getParameter("txtDono"));
             pedido.setValor(Double.parseDouble(request.getParameter("txtValor")));
             pedido.setNome(request.getParameter("txtNome"));
-            //pedido.setAtualizacao(request.getParameter("txtAtualizacao"));
+            pedido.setAtualizacao(formataData.parse(request.getParameter("txtAtualizacao")));
             dao.atualizarPedido(pedido);
             response.sendRedirect("pedidos.html");
         } catch (NumberFormatException ex) {

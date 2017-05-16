@@ -9,7 +9,7 @@ public class Pedidos {
     private String dono;
     private double valor;
     private String nome;
-    private Timestamp atualizacao;
+    private Date atualizacao;
     
 
     public Pedidos() {
@@ -55,14 +55,11 @@ public class Pedidos {
         this.nome = nome;
     }
 
-    public Timestamp getAtualizacao() {
+    public Date getAtualizacao() {
         return atualizacao;
     }
 
-    public void setAtualizacao(Timestamp atualizacao) {
+    public void setAtualizacao(Date atualizacao) {
         this.atualizacao = atualizacao;
     }
-    
-    
-    
 }
